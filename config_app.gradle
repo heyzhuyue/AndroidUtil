@@ -1,0 +1,60 @@
+apply {
+    plugin "com.android.application"
+    plugin "kotlin-android"
+    plugin "kotlin-android-extensions"
+}
+
+configApkName project
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion localBuildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        applicationId rootProject.applicationId + suffix
+        targetSdkVersion rootProject.targetSdkVersion
+        resValue "string", "app_name", rootProject.appName + suffix
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+private String getSuffix() {
+    if (project.name == "launcher-app") return ""
+    String[] splits = project.name.split("-")
+    String suffix = ""
+    if (splits.length == 2) {
+        suffix = "_" + splits[0]
+    }
+    print("suffix" + suffix)
+    return suffix
+}
+
+def configApkName(Project pro) {
+    pro.android.applicationVariants.all { variant ->
+        if (variant.buildType.name != "debug") {
+            variant.getPackageApplication().outputDirectory = new File("${rootDir.path}/apk")
+            variant.getPackageApplication().outputScope.apkDatas.forEach { apkData ->
+                apkData.outputFileName = "util" + suffix +
+                        "_" + variant.versionName.replace(".", "_") +
+                        ".apk"
+            }
+        }
+    }
+}
