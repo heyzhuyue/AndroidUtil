@@ -6,7 +6,7 @@ apply {
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion localBuildToolsVersion
+    buildToolsVersion project.localBuildToolsVersion
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         versionCode rootProject.versionCode
