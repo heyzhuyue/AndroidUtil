@@ -46,6 +46,11 @@ private String getSuffix() {
     return suffix
 }
 
+/**
+ * 配置Apk名字
+ * @param pro Project项目
+ * @return
+ */
 def configApkName(Project pro) {
     pro.android.applicationVariants.all { variant ->
         if (variant.buildType.name != "debug") {

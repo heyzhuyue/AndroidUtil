@@ -16,8 +16,6 @@ ext {
                     'com.android.tools.build:gradle:3.2.1',
                     "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
             ],
-
-            // lib
             support   : [
                     appcompat_v7: "com.android.support:appcompat-v7:$support_version",
                     design      : "com.android.support:design:$support_version",
