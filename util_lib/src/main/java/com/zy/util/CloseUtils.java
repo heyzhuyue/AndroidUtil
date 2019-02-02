@@ -5,6 +5,8 @@ import java.io.IOException;
 
 /**
  * 关闭相关工具类
+ *
+ * @description 关闭IO工具类
  */
 
 public class CloseUtils {

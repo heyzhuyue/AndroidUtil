@@ -9,7 +9,7 @@ import java.util.List;
  * Created by zhuyue on 2017/9/15.
  *
  * @author zhuyue
- * @description Actiivty管理类
+ * @description Activity管理类
  */
 
 public class ActivityManager {

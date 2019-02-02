@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import java.nio.charset.Charset;
 
 /**
+ * @author zhuyue
  * 进制转换工具类
  */
 public class HexUtils {

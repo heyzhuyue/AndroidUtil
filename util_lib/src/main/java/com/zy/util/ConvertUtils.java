@@ -14,14 +14,13 @@ import java.io.*;
 
 /**
  * <pre>
- *     author: Blankj
+ *     author: zhuyue
  *     blog  : http://blankj.com
  *     time  : 2016/8/13
  *     desc  : 转换相关工具类
  * </pre>
  */
 public class ConvertUtils {
-
 
 
     private ConvertUtils() {
@@ -128,25 +127,25 @@ public class ConvertUtils {
      * @param memorySize 大小
      * @param unit       单位类型
      *                   <ul>
-     *                   <li>{@link ConstUtils.MemoryUnit#BYTE}: 字节</li>
-     *                   <li>{@link ConstUtils.MemoryUnit#KB}  : 千字节</li>
-     *                   <li>{@link ConstUtils.MemoryUnit#MB}  : 兆</li>
-     *                   <li>{@link ConstUtils.MemoryUnit#GB}  : GB</li>
+     *                   <li>{@link Constans.MemoryUnit#BYTE}: 字节</li>
+     *                   <li>{@link Constans.MemoryUnit#KB}  : 千字节</li>
+     *                   <li>{@link Constans.MemoryUnit#MB}  : 兆</li>
+     *                   <li>{@link Constans.MemoryUnit#GB}  : GB</li>
      *                   </ul>
      * @return 字节数
      */
-    public static long memorySize2Byte(long memorySize, ConstUtils.MemoryUnit unit) {
+    public static long memorySize2Byte(long memorySize, Constans.MemoryUnit unit) {
         if (memorySize < 0) return -1;
         switch (unit) {
             default:
             case BYTE:
                 return memorySize;
             case KB:
-                return memorySize * ConstUtils.KB;
+                return memorySize * Constans.KB;
             case MB:
-                return memorySize * ConstUtils.MB;
+                return memorySize * Constans.MB;
             case GB:
-                return memorySize * ConstUtils.GB;
+                return memorySize * Constans.GB;
         }
     }
 
@@ -156,25 +155,25 @@ public class ConvertUtils {
      * @param byteNum 字节数
      * @param unit    单位类型
      *                <ul>
-     *                <li>{@link ConstUtils.MemoryUnit#BYTE}: 字节</li>
-     *                <li>{@link ConstUtils.MemoryUnit#KB}  : 千字节</li>
-     *                <li>{@link ConstUtils.MemoryUnit#MB}  : 兆</li>
-     *                <li>{@link ConstUtils.MemoryUnit#GB}  : GB</li>
+     *                <li>{@link Constans.MemoryUnit#BYTE}: 字节</li>
+     *                <li>{@link Constans.MemoryUnit#KB}  : 千字节</li>
+     *                <li>{@link Constans.MemoryUnit#MB}  : 兆</li>
+     *                <li>{@link Constans.MemoryUnit#GB}  : GB</li>
      *                </ul>
      * @return 以unit为单位的size
      */
-    public static double byte2MemorySize(long byteNum, ConstUtils.MemoryUnit unit) {
+    public static double byte2MemorySize(long byteNum, Constans.MemoryUnit unit) {
         if (byteNum < 0) return -1;
         switch (unit) {
             default:
             case BYTE:
                 return (double) byteNum;
             case KB:
-                return (double) byteNum / ConstUtils.KB;
+                return (double) byteNum / Constans.KB;
             case MB:
-                return (double) byteNum / ConstUtils.MB;
+                return (double) byteNum / Constans.MB;
             case GB:
-                return (double) byteNum / ConstUtils.GB;
+                return (double) byteNum / Constans.GB;
         }
     }
 
@@ -189,14 +188,14 @@ public class ConvertUtils {
     public static String byte2FitMemorySize(long byteNum) {
         if (byteNum < 0) {
             return "shouldn't be less than zero!";
-        } else if (byteNum < ConstUtils.KB) {
+        } else if (byteNum < Constans.KB) {
             return String.format("%.3fB", byteNum + 0.0005);
-        } else if (byteNum < ConstUtils.MB) {
-            return String.format("%.3fKB", byteNum / ConstUtils.KB + 0.0005);
-        } else if (byteNum < ConstUtils.GB) {
-            return String.format("%.3fMB", byteNum / ConstUtils.MB + 0.0005);
+        } else if (byteNum < Constans.MB) {
+            return String.format("%.3fKB", byteNum / Constans.KB + 0.0005);
+        } else if (byteNum < Constans.GB) {
+            return String.format("%.3fMB", byteNum / Constans.MB + 0.0005);
         } else {
-            return String.format("%.3fGB", byteNum / ConstUtils.GB + 0.0005);
+            return String.format("%.3fGB", byteNum / Constans.GB + 0.0005);
         }
     }
 
@@ -206,27 +205,27 @@ public class ConvertUtils {
      * @param timeSpan 毫秒时间戳
      * @param unit     单位类型
      *                 <ul>
-     *                 <li>{@link ConstUtils.TimeUnit#MSEC}: 毫秒</li>
-     *                 <li>{@link ConstUtils.TimeUnit#SEC }: 秒</li>
-     *                 <li>{@link ConstUtils.TimeUnit#MIN }: 分</li>
-     *                 <li>{@link ConstUtils.TimeUnit#HOUR}: 小时</li>
-     *                 <li>{@link ConstUtils.TimeUnit#DAY }: 天</li>
+     *                 <li>{@link Constans.TimeUnit#MSEC}: 毫秒</li>
+     *                 <li>{@link Constans.TimeUnit#SEC }: 秒</li>
+     *                 <li>{@link Constans.TimeUnit#MIN }: 分</li>
+     *                 <li>{@link Constans.TimeUnit#HOUR}: 小时</li>
+     *                 <li>{@link Constans.TimeUnit#DAY }: 天</li>
      *                 </ul>
      * @return 毫秒时间戳
      */
-    public static long timeSpan2Millis(long timeSpan, ConstUtils.TimeUnit unit) {
+    public static long timeSpan2Millis(long timeSpan, Constans.TimeUnit unit) {
         switch (unit) {
             default:
             case MSEC:
                 return timeSpan;
             case SEC:
-                return timeSpan * ConstUtils.SEC;
+                return timeSpan * Constans.SEC;
             case MIN:
-                return timeSpan * ConstUtils.MIN;
+                return timeSpan * Constans.MIN;
             case HOUR:
-                return timeSpan * ConstUtils.HOUR;
+                return timeSpan * Constans.HOUR;
             case DAY:
-                return timeSpan * ConstUtils.DAY;
+                return timeSpan * Constans.DAY;
         }
     }
 
@@ -236,27 +235,27 @@ public class ConvertUtils {
      * @param millis 毫秒时间戳
      * @param unit   单位类型
      *               <ul>
-     *               <li>{@link ConstUtils.TimeUnit#MSEC}: 毫秒</li>
-     *               <li>{@link ConstUtils.TimeUnit#SEC }: 秒</li>
-     *               <li>{@link ConstUtils.TimeUnit#MIN }: 分</li>
-     *               <li>{@link ConstUtils.TimeUnit#HOUR}: 小时</li>
-     *               <li>{@link ConstUtils.TimeUnit#DAY }: 天</li>
+     *               <li>{@link Constans.TimeUnit#MSEC}: 毫秒</li>
+     *               <li>{@link Constans.TimeUnit#SEC }: 秒</li>
+     *               <li>{@link Constans.TimeUnit#MIN }: 分</li>
+     *               <li>{@link Constans.TimeUnit#HOUR}: 小时</li>
+     *               <li>{@link Constans.TimeUnit#DAY }: 天</li>
      *               </ul>
      * @return 以unit为单位的时间长度
      */
-    public static long millis2TimeSpan(long millis, ConstUtils.TimeUnit unit) {
+    public static long millis2TimeSpan(long millis, Constans.TimeUnit unit) {
         switch (unit) {
             default:
             case MSEC:
                 return millis;
             case SEC:
-                return millis / ConstUtils.SEC;
+                return millis / Constans.SEC;
             case MIN:
-                return millis / ConstUtils.MIN;
+                return millis / Constans.MIN;
             case HOUR:
-                return millis / ConstUtils.HOUR;
+                return millis / Constans.HOUR;
             case DAY:
-                return millis / ConstUtils.DAY;
+                return millis / Constans.DAY;
         }
     }
 
@@ -345,9 +344,9 @@ public class ConvertUtils {
         if (is == null) return null;
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            byte[] b = new byte[ConstUtils.KB];
+            byte[] b = new byte[Constans.KB];
             int len;
-            while ((len = is.read(b, 0, ConstUtils.KB)) != -1) {
+            while ((len = is.read(b, 0, Constans.KB)) != -1) {
                 os.write(b, 0, len);
             }
             return os;

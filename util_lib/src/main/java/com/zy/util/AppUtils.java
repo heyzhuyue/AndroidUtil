@@ -1,12 +1,9 @@
 package com.zy.util;
 
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,21 +21,10 @@ public class AppUtils {
     }
 
     /**
-     * 判断当前界面是否是桌面
-     *
-     * @param context 上下文
-     */
-    public static boolean isHome(Context context) {
-        ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> rti = mActivityManager.getRunningTasks(1);
-        return getHomes(context).contains(rti.get(0).topActivity.getPackageName());
-    }
-
-    /**
      * 获取App包名
      *
      * @param context 上下文
-     * @return
+     * @return 包名
      */
     public static String getAppPackName(Context context) {
         return context.getPackageName();
@@ -81,35 +67,20 @@ public class AppUtils {
      *
      * @param context 上下文
      * @param file    文件
-     * @return
+     * @return 是否已安装
      */
     public static boolean isAvailable(Context context, File file) {
         return isAvailable(context, getPackageName(context, file.getAbsolutePath()));
     }
 
     /**
-     * 获得属于桌面的应用的应用包名称
-     *
-     * @param context Context
-     * @return 返回包含所有包名的字符串列表
-     */
-    private static List<String> getHomes(Context context) {
-        List<String> names = new ArrayList<String>();
-        PackageManager packageManager = context.getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent,
-                PackageManager.MATCH_DEFAULT_ONLY);
-        for (ResolveInfo ri : resolveInfo) {
-            names.add(ri.activityInfo.packageName);
-        }
-        return names;
-    }
-
-    /**
      * 检查手机上是否安装了指定的软件
+     *
+     * @param context     上下文
+     * @param packageName 包名
+     * @return 是否已安装
      */
-    private static boolean isAvailable(Context context, String packageName) {
+    public static boolean isAvailable(Context context, String packageName) {
         final PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(0);
         List<String> packageNames = new ArrayList<>();
@@ -124,13 +95,17 @@ public class AppUtils {
 
     /**
      * 根据文件路径获取包名
+     *
+     * @param context  上下文
+     * @param filePath 文件路径
+     * @return 包名
      */
     private static String getPackageName(Context context, String filePath) {
         PackageManager packageManager = context.getPackageManager();
         PackageInfo info = packageManager.getPackageArchiveInfo(filePath, PackageManager.GET_ACTIVITIES);
         if (info != null) {
             ApplicationInfo appInfo = info.applicationInfo;
-            return appInfo.packageName;  //得到安装包名称
+            return appInfo.packageName;
         }
         return null;
     }
