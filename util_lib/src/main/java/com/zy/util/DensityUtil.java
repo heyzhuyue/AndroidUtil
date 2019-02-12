@@ -43,7 +43,6 @@ public class DensityUtil {
      *
      * @param context 上下文
      * @param spValue sp值
-     * @return
      */
     public static int sp2px(Context context, float spValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -56,7 +55,6 @@ public class DensityUtil {
      *
      * @param context 上下文
      * @param pxValue px值
-     * @return
      */
     public static int px2sp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;

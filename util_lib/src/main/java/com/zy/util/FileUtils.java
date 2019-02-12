@@ -1,5 +1,6 @@
 package com.zy.util;
 
+
 import java.io.*;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
@@ -10,10 +11,9 @@ import java.util.List;
 
 /**
  * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/11
- *     desc  : 文件相关工具类
+ *     author: zhuyue
+ *     time  : 2019/2/11
+ *     desc  :文件相关工具类
  * </pre>
  */
 public class FileUtils {
@@ -72,13 +72,21 @@ public class FileUtils {
      */
     public static boolean rename(File file, String newName) {
         // 文件为空返回false
-        if (file == null) return false;
+        if (file == null) {
+            return false;
+        }
         // 文件不存在返回false
-        if (!file.exists()) return false;
+        if (!file.exists()) {
+            return false;
+        }
         // 新的文件名为空返回false
-        if (StringUtils.isSpace(newName)) return false;
+        if (StringUtils.isSpace(newName)) {
+            return false;
+        }
         // 如果文件名没有改变返回true
-        if (newName.equals(file.getName())) return true;
+        if (newName.equals(file.getName())) {
+            return true;
+        }
         File newFile = new File(file.getParent() + File.separator + newName);
         // 如果重命名的文件已存在返回false
         return !newFile.exists()
@@ -163,10 +171,16 @@ public class FileUtils {
      * @return {@code true}: 存在或创建成功<br>{@code false}: 不存在或创建失败
      */
     public static boolean createOrExistsFile(File file) {
-        if (file == null) return false;
+        if (file == null) {
+            return false;
+        }
         // 如果存在，是文件则返回true，是目录则返回false
-        if (file.exists()) return file.isFile();
-        if (!createOrExistsDir(file.getParentFile())) return false;
+        if (file.exists()) {
+            return file.isFile();
+        }
+        if (!createOrExistsDir(file.getParentFile())) {
+            return false;
+        }
         try {
             return file.createNewFile();
         } catch (IOException e) {
@@ -192,11 +206,17 @@ public class FileUtils {
      * @return {@code true}: 创建成功<br>{@code false}: 创建失败
      */
     public static boolean createFileByDeleteOldFile(File file) {
-        if (file == null) return false;
+        if (file == null) {
+            return false;
+        }
         // 文件存在并且删除失败返回false
-        if (file.exists() && file.isFile() && !file.delete()) return false;
+        if (file.exists() && file.isFile() && !file.delete()) {
+            return false;
+        }
         // 创建目录失败返回false
-        if (!createOrExistsDir(file.getParentFile())) return false;
+        if (!createOrExistsDir(file.getParentFile())) {
+            return false;
+        }
         try {
             return file.createNewFile();
         } catch (IOException e) {
@@ -226,7 +246,9 @@ public class FileUtils {
      * @return {@code true}: 复制或移动成功<br>{@code false}: 复制或移动失败
      */
     private static boolean copyOrMoveDir(File srcDir, File destDir, boolean isMove) {
-        if (srcDir == null || destDir == null) return false;
+        if (srcDir == null || destDir == null) {
+            return false;
+        }
         // 如果目标目录在源目录中则返回false，看不懂的话好好想想递归怎么结束
         // srcPath : F:\\MyGithub\\AndroidUtilCode\\utilcode\\src\\test\\res
         // destPath: F:\\MyGithub\\AndroidUtilCode\\utilcode\\src\\test\\res1

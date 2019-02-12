@@ -90,7 +90,7 @@ public class AppUtils {
                 packageNames.add(packName);
             }
         }
-        return packageNames.contains(packageName);// 判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
+        return packageNames.contains(packageName);
     }
 
     /**
