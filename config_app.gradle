@@ -19,15 +19,45 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'zx1234'
+            keyPassword 'zx1234'
+            storeFile file('../keys/key_stone')
+            storePassword 'zx1234'
+            v2SigningEnabled false
+            v1SigningEnabled true
+        }
+
+        debug {
+            storeFile file("../keys/debug.keystore")
+        }
+    }
+
     buildTypes {
         debug {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        dev{
+            debuggable true
+            minifyEnabled false
+            matchingFallbacks = ['release', 'debug']
+            signingConfig signingConfigs.debug
+        }
+        pre{
+            debuggable true
+            minifyEnabled false
+            matchingFallbacks = ['release', 'debug']
+            signingConfig signingConfigs.release
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+
     }
 
     lintOptions {

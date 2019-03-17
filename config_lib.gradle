@@ -15,8 +15,19 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+        }
+        dev{
+            minifyEnabled false
+            matchingFallbacks = ['release', 'debug']
+        }
+        pre{
+            minifyEnabled false
+            matchingFallbacks = ['release', 'debug']
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
