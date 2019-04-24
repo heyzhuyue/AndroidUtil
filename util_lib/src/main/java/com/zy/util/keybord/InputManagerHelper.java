@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.zy.utilcode.R;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author zhuyue
@@ -83,7 +82,7 @@ public class InputManagerHelper {
         return this;
     }
 
-    private void bindKeyboardListenLayout(@NotNull final KeyBoardListenLayout keyboardListenLayout, final View view) {
+    private void bindKeyboardListenLayout(final KeyBoardListenLayout keyboardListenLayout, final View view) {
         keyboardListenLayout.setOnSizeChangedListener(new KeyBoardListenLayout.onSizeChangedListener() {
             @Override
             public void onChanged(final boolean showKeyboard, final int h, final int oldh) {
@@ -126,7 +125,7 @@ public class InputManagerHelper {
         });
     }
 
-    private void bindLayout(@NotNull final ViewGroup viewGroup, final View view) {
+    private void bindLayout(final ViewGroup viewGroup, final View view) {
         viewGroup.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -175,7 +174,7 @@ public class InputManagerHelper {
         });
     }
 
-    private void bindViewGroup(@NotNull final ViewGroup viewGroup) {
+    private void bindViewGroup(final ViewGroup viewGroup) {
         viewGroup.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {

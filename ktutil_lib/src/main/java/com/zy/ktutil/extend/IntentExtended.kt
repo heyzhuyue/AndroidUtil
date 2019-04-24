@@ -17,12 +17,12 @@ inline fun <reified T : Activity> Fragment.startAct() {
     startActivity(Intent(this.context, T::class.java))
 }
 
-inline fun <reified T : Activity> Activity.startAct(requesrCode: Int) {
-    startActivityForResult(Intent(this, T::class.java), requesrCode)
+inline fun <reified T : Activity> Activity.startAct(requestCode: Int) {
+    startActivityForResult(Intent(this, T::class.java), requestCode)
 }
 
-inline fun <reified T : Activity> Fragment.startAct(requesrCode: Int) {
-    startActivityForResult(Intent(this.context, T::class.java), requesrCode)
+inline fun <reified T : Activity> Fragment.startAct(requestCode: Int) {
+    startActivityForResult(Intent(this.context, T::class.java), requestCode)
 }
 
 inline fun <reified T : Activity> Activity.startAct(initializer: Intent.() -> Unit) {

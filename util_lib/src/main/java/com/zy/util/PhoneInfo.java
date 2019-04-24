@@ -1,4 +1,4 @@
-package com.zy.util.camera;
+package com.zy.util;
 
 import android.os.Build;
 
@@ -9,7 +9,7 @@ import android.os.Build;
  *     desc  : 判断手机系统化工具类
  * </pre>
  */
-class PhoneInfo {
+public class PhoneInfo {
 
     public static boolean isMIUI() {
         String manufacturer = Build.MANUFACTURER;

@@ -10,7 +10,6 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <pre>
@@ -44,7 +43,7 @@ public class KeyBoardHelper {
      * @param activity Activity
      * @return KeyBoardHelper
      */
-    public static KeyBoardHelper attachToActivity(@NotNull Activity activity) {
+    public static KeyBoardHelper attachToActivity( Activity activity) {
         activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return new KeyBoardHelper(activity);
     }
@@ -87,7 +86,7 @@ public class KeyBoardHelper {
         return this;
     }
 
-    private void bindLayout(@NotNull final ViewGroup viewGroup, final View view) {
+    private void bindLayout( final ViewGroup viewGroup, final View view) {
         viewGroup.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -136,7 +135,7 @@ public class KeyBoardHelper {
         });
     }
 
-    private void bindViewGroup(@NotNull final ViewGroup viewGroup) {
+    private void bindViewGroup( final ViewGroup viewGroup) {
         viewGroup.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
