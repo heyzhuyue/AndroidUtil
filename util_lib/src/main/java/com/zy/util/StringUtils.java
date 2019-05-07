@@ -107,6 +107,26 @@ public class StringUtils {
     }
 
     /**
+     * 字母转小写
+     *
+     * @param str 文案
+     * @return
+     */
+    public static String lowerStr(String str) {
+        return str.toLowerCase();
+    }
+
+    /**
+     * 字母转大写
+     *
+     * @param str 文案
+     * @return
+     */
+    public static String upperStr(String str) {
+        return str.toUpperCase();
+    }
+
+    /**
      * 反转字符串
      *
      * @param s 待反转字符串

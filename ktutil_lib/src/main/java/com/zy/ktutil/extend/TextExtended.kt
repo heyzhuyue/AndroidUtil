@@ -1,6 +1,11 @@
 package com.zy.ktutil.extend
 
+import android.text.ParcelableSpan
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextUtils
+import android.text.style.ForegroundColorSpan
+import com.zy.ktutil.Utils
 import com.zy.ktutil.util.LoggerUtil
 import com.zy.ktutil.util.ToastUtils
 import java.util.*
@@ -72,7 +77,8 @@ const val REGEX_USERNAME = "^[\\w\\u4e00-\\u9fa5]{6,20}(?<!_)$"
 /**
  * 正则：yyyy-MM-dd格式的日期校验，已考虑平闰年
  */
-const val REGEX_DATE = "^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$"
+const val REGEX_DATE =
+    "^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$"
 
 /**
  * 正则：IP地址
@@ -284,6 +290,25 @@ fun CharSequence.getReplaceSpace(regex: String, replacement: String): String {
  */
 fun CharSequence.getReplaceAll(regex: String, replacement: String): String {
     return Pattern.compile(regex).matcher(this.toString()).replaceAll(replacement)
+}
+
+/**
+ * 拼接不同颜色的字符串
+ * @param color 颜色
+ * @param start 开始位置
+ * @param end 结束位置
+ */
+fun CharSequence.formatStringColor(color: Int, start: Int, end: Int): SpannableString {
+    return this.setSpan(ForegroundColorSpan(Utils.getContext().resources.getColor(color)), start, end)
+}
+
+/**
+ * 拼接不同颜色的字符串
+ */
+private fun CharSequence.setSpan(span: ParcelableSpan, start: Int, end: Int): SpannableString {
+    val spannableString = SpannableString(this)
+    spannableString.setSpan(span, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+    return spannableString
 }
 
 /**
