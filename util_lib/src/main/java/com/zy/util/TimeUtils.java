@@ -819,4 +819,55 @@ public class TimeUtils {
         return CHINESE_ZODIAC[year % 12];
     }
 
+    /**
+     * 判断是否为今天(效率比较高)
+     *
+     * @param date 传入的 时间
+     * @return true今天 false不是
+     */
+    public static boolean IsToday(Date date) {
+        Calendar pre = Calendar.getInstance();
+        Date predate = new Date(System.currentTimeMillis());
+        pre.setTime(predate);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        if (cal.get(Calendar.YEAR) == (pre.get(Calendar.YEAR))) {
+            int diffDay = cal.get(Calendar.DAY_OF_YEAR)
+                    - pre.get(Calendar.DAY_OF_YEAR);
+            return diffDay == 0;
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否大于当前时间(效率比较高)
+     *
+     * @param date 传入的 时间
+     * @return true:大于当前时间 false:不大于当前时间
+     */
+    public static boolean IsOverData(Date date) {
+        Calendar pre = Calendar.getInstance();
+        Date predate = new Date(System.currentTimeMillis());
+        pre.setTime(predate);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        if (cal.get(Calendar.YEAR) == (pre.get(Calendar.YEAR))) {
+            int diffDay = cal.get(Calendar.DAY_OF_YEAR)
+                    - pre.get(Calendar.DAY_OF_YEAR);
+            int diffHour = cal.get(Calendar.HOUR_OF_DAY)
+                    - pre.get(Calendar.HOUR_OF_DAY);
+            if (diffDay >= 0) { //日相差>=0
+                if (diffDay == 0) {
+                    return diffHour >= 0;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
